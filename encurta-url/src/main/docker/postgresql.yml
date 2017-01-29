@@ -1,0 +1,12 @@
+version: '2'
+services:
+    encurtaurl-postgresql:
+        container_name: encurtaurl-postgresql
+        image: postgres:9.5.4
+        # volumes:
+        #     - ~/volumes/jhipster/encurtaURL/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=encurtaURL
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432

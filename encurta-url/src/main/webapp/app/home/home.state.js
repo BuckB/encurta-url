@@ -20,6 +20,16 @@
                     controller: 'HomeController',
                     controllerAs: 'vm'
                 }
+            },
+            resolve: {
+                entity: function () {
+                    return {
+                        url: null,
+                        alias: null,
+                        time_taken: null,
+                        id: null
+                    };
+                }
             }
         });
     }

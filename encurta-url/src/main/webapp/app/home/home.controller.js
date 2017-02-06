@@ -5,15 +5,18 @@
         .module('encurtaUrlApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];
+    HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state', '$stateParams', 'entity', 'Link'];
 
-    function HomeController ($scope, Principal, LoginService, $state) {
+    function HomeController ($scope, Principal, LoginService, $state, $stateParams, entity, Link) {
         var vm = this;
 
+        vm.link = entity;
+        vm.save = save;
         vm.account = null;
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
+
         $scope.$on('authenticationSuccess', function() {
             getAccount();
         });
@@ -28,6 +31,21 @@
         }
         function register () {
             $state.go('register');
+        }
+
+        function save () {
+            vm.isSaving = true;
+            Link.save(vm.link, onSaveSuccess, onSaveError);
+            }
+
+        function onSaveSuccess (result) {
+            $scope.$emit('encurtaUrlApp:linkUpdate', result);
+            console.log('result > ',result);
+            vm.isSaving = false;
+        }
+
+        function onSaveError () {
+            vm.isSaving = false;
         }
     }
 })();

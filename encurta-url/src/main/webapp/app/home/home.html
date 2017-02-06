@@ -1,5 +1,5 @@
 <div ng-cloak>
-    <div class="row">
+    <!--<div class="row">
         <div class="col-md-4">
             <span class="hipster img-responsive img-rounded"></span>
         </div>
@@ -37,5 +37,62 @@
              <span>If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank">Github</a>!
             </p>
         </div>
-    </div>
+    </div>-->
+    <form name="urlForm" role="form" novalidate ng-submit="vm.encurtaUrl" show-validation>
+        <div>
+            <uib-tabset active="active">
+                <uib-tab index="0" heading="Encuntar URL">
+                    <div class="row btn-encurta">
+                        <div class="form-group col-md-8">
+                            <label>URL</label>
+                            <input type="text" class="form-control" ng-class="{'url-invalid' : urlForm.url.$invalid && urlForm.url.$touched}" name="url" id="field-url" ng-model="vm.link.url"
+                                   required ng-minlength="4" ng-pattern="/(^(https?:\/\/)?(www.)?([a-zA-Z0-9]+)(.[a-zA-Z0-9])*?(.[a-z]{2,3})(.[a-z]+)?$)/">
+                            <div ng-show="urlForm.url.$invalid">
+                                <p class="help-block invalid-msg"
+                                   ng-show="urlForm.url.$error.required && urlForm.url.$touched">
+                                    Esse campo é obrigatório.
+                                </p>
+                                <p class="help-block invalid-msg"
+                                   ng-show="urlForm.url.$error.minlength" translate-value-min="4">
+                                    A url a ser encurtada deve ter no mínimo 4 caracteres.
+                                </p>
+                                <p class="help-block invalid-msg"
+                                   ng-show="urlForm.url.$error.pattern" translate-value-pattern="/(^(https?:\/\/)?(www.)?([a-zA-Z0-9]+)(.[a-zA-Z0-9])*?(.[a-z]{2,3})(.[a-z]+)?$)/">
+                                    Url inválida.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Alias (Opcional)</label>
+                            <input type="text" class="form-control" ng-class="{'url-invalid' : urlForm.alias.$invalid}" name="alias" id="field-alias" ng-model="vm.link.alias" ng-minlength="3">
+                            <div ng-show="urlForm.alias.$invalid">
+                                <p class="help-block"
+                                   ng-show="urlForm.alias.$error.minlength" translate-value-min="3">
+                                    O alias da sua url encurtada deve ter no mínimo 3 caracteres.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group btn-toolbar button-bar col-md-8">
+                            <button type="button" class="btn btn-success btn-encurta pull-right" ng-click="vm.save()" ng-disabled="urlForm.url.$invalid || urlForm.url.$error.pattern">Encurtar</button>
+                        </div>
+                    </div>
+                </uib-tab>
+                <uib-tab index="1" heading="Restaurar URL">
+                    <div class="row btn-encurta">
+                        <div class=" form-group col-md-4">
+                            <label>Alias</label>
+                            <input type="text" class="form-control form-inline text-input" ng-required="true">
+                        </div>
+                        <div class="form-group btn-toolbar col-md-2">
+                            <button type="button" class="btn btn-success btn-encurta" ng-click="vm.retrieve()">Restaurar</button>
+                        </div>
+                    </div>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+    </form>
 </div>

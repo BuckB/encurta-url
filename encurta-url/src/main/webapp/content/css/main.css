@@ -332,3 +332,14 @@ ui bootstrap tweaks
 
 
 /* jhipster-needle-css-add-main JHipster will add new css style */
+.btn-encurta {
+    margin-top: 1.8em;
+}
+
+.url-invalid, .alias-invalid {
+    border:1px solid #f00;
+}
+
+.invalid-msg {
+    color: #ff0000;
+}

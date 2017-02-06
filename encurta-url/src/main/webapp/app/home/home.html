@@ -1,43 +1,4 @@
 <div ng-cloak>
-    <!--<div class="row">
-        <div class="col-md-4">
-            <span class="hipster img-responsive img-rounded"></span>
-        </div>
-        <div class="col-md-8">
-            <h1>Welcome, Java Hipster!</h1>
-            <p class="lead">This is your homepage</p>
-
-            <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true">
-                    You are logged in as user "{{vm.account.login}}".
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false">
-                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false">
-                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
-                </div>
-            </div>
-
-            <p>
-                If you have any question on JHipster:
-            </p>
-
-            <ul>
-                <li><a href="http://jhipster.github.io/" target="_blank">JHipster homepage</a></li>
-                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank">JHipster on Stack Overflow</a></li>
-                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank">JHipster bug tracker</a></li>
-                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank">JHipster public chat room</a></li>
-                <li><a href="https://twitter.com/java_hipster" target="_blank" >follow @java_hipster on Twitter</a></li>
-            </ul>
-
-            <p>
-             <span>If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank">Github</a>!
-            </p>
-        </div>
-    </div>-->
     <form name="urlForm" role="form" novalidate ng-submit="vm.encurtaUrl" show-validation>
         <div>
             <uib-tabset active="active">
@@ -45,8 +6,8 @@
                     <div class="row btn-encurta">
                         <div class="form-group col-md-8">
                             <label>URL</label>
-                            <input type="text" class="form-control" ng-class="{'url-invalid' : urlForm.url.$invalid && urlForm.url.$touched}" name="url" id="field-url" ng-model="vm.link.url"
-                                   required ng-minlength="4" ng-pattern="/(^(https?:\/\/)?(www.)?([a-zA-Z0-9]+)(.[a-zA-Z0-9])*?(.[a-z]{2,3})(.[a-z]+)?$)/">
+                            <input type="url" class="form-control" ng-class="{'url-invalid' : urlForm.url.$invalid && urlForm.url.$touched}" name="url" id="field-url" ng-model="vm.link.url"
+                                   required ng-minlength="4" ng-pattern="/(^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+\.)([a-zA-Z]{2,3})(\.[a-zA-Z]{2,3})?$)/" protocol-prefix>
                             <div ng-show="urlForm.url.$invalid">
                                 <p class="help-block invalid-msg"
                                    ng-show="urlForm.url.$error.required && urlForm.url.$touched">
@@ -57,14 +18,14 @@
                                     A url a ser encurtada deve ter no mínimo 4 caracteres.
                                 </p>
                                 <p class="help-block invalid-msg"
-                                   ng-show="urlForm.url.$error.pattern" translate-value-pattern="/(^(https?:\/\/)?(www.)?([a-zA-Z0-9]+)(.[a-zA-Z0-9])*?(.[a-z]{2,3})(.[a-z]+)?$)/">
+                                   ng-show="urlForm.url.$error.pattern" translate-value-pattern="/(^(https?:\/\/)?(www\.)?([a-zA-Z0-9]+\.)([a-zA-Z]{2,3})(\.[a-zA-Z]{2,3})?$)/">
                                     Url inválida.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="form-group col-md-4">
                             <label>Alias (Opcional)</label>
                             <input type="text" class="form-control" ng-class="{'url-invalid' : urlForm.alias.$invalid}" name="alias" id="field-alias" ng-model="vm.link.alias" ng-minlength="3">
                             <div ng-show="urlForm.alias.$invalid">
@@ -80,7 +41,28 @@
                             <button type="button" class="btn btn-success btn-encurta pull-right" ng-click="vm.save()" ng-disabled="urlForm.url.$invalid || urlForm.url.$error.pattern">Encurtar</button>
                         </div>
                     </div>
+                    <div ng-show="vm.mostra">
+                        <div class="row">
+                            <div class="form-group col-md-8">
+                                <label>URL encurtada</label>
+                                <input type="text" class="form-control" readonly ng-model="vm.shortened">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-8">
+                                <label>URL original</label>
+                                <input type="text" class="form-control" readonly ng-model="vm.original">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-3">
+                                <label>Tempo de execução</label>
+                                <input type="text" class="form-control" readonly ng-model="vm.tempo">
+                            </div>
+                        </div>
+                    </div>
                 </uib-tab>
+                <!-- Tab de recuperar URL-->
                 <uib-tab index="1" heading="Restaurar URL">
                     <div class="row btn-encurta">
                         <div class=" form-group col-md-4">

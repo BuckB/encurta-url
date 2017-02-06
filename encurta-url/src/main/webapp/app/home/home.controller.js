@@ -16,6 +16,7 @@
         vm.isAuthenticated = null;
         vm.login = LoginService.open;
         vm.register = register;
+        vm.mostra = false;
 
         $scope.$on('authenticationSuccess', function() {
             getAccount();
@@ -41,7 +42,10 @@
         function onSaveSuccess (result) {
             $scope.$emit('encurtaUrlApp:linkUpdate', result);
             console.log('result > ',result);
+            vm.tempo = vm.link.
             vm.isSaving = false;
+            vm.mostra = true;
+
         }
 
         function onSaveError () {

@@ -42,7 +42,9 @@
         function onSaveSuccess (result) {
             $scope.$emit('encurtaUrlApp:linkUpdate', result);
             console.log('result > ',result);
-            vm.tempo = vm.link.
+            vm.tempo = result.time_taken;
+            vm.shortened = result.shortened;
+            vm.original = result.original;
             vm.isSaving = false;
             vm.mostra = true;
 
@@ -50,6 +52,7 @@
 
         function onSaveError () {
             vm.isSaving = false;
+            vm.mostra = false;
         }
     }
 })();

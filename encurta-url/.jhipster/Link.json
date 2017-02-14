@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "url",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMinlength": "11",
+            "fieldValidateRulesMaxlength": "100",
+            "fieldValidateRulesPattern": "(^(https?:\\/\\/)?(www\\.)?([a-zA-Z0-9]+\\.)([a-zA-Z]{2,3})(\\.[a-zA-Z]{2,3})?$)"
+        },
+        {
+            "fieldName": "alias",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": "3",
+            "fieldValidateRulesMaxlength": "10"
+        },
+        {
+            "fieldName": "time_taken",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20170207234500",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "link",
+    "pagination": "no"
+}

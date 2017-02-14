@@ -67,10 +67,42 @@
                     <div class="row btn-encurta">
                         <div class=" form-group col-md-4">
                             <label>Alias</label>
-                            <input type="text" class="form-control form-inline text-input" ng-required="true">
+                            <input type="text" class="form-control form-inline text-input" ng-model="vm.alias" ng-required="true">
                         </div>
                         <div class="form-group btn-toolbar col-md-2">
-                            <button type="button" class="btn btn-success btn-encurta" ng-click="vm.retrieve()">Restaurar</button>
+                            <button type="button" class="btn btn-success btn-encurta" ng-click="vm.retrieve()" ng-disabled="vm.alias == null">Restaurar</button>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="vm.mostraRetorno">
+                        <div class="table-responsive">
+                            <table class="jh-table table table-striped">
+                                <thead>
+                                <tr>
+                                    <th><span>Url</span></th>
+                                    <th><span>Alias</span></th>
+                                    <th><span>Time Taken (em milisegundos)</span></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="link in vm.result | filter: (link.alias = vm.alias) | limitTo:vm.limit track by link.id">
+                                    <td>{{link.url}}</td>
+                                    <td>{{link.alias}}</td>
+                                    <td>{{link.time_taken}}</td>
+                                    <td class="text-right">
+                                        <div class="btn-group flex-btn-group-container">
+                                            <a type="button" name="Navegar para"
+                                                    href="{{link.url}}"
+                                                    target="_blank"
+                                                    class="btn btn-success btn-sm">
+                                                <span class="glyphicon glyphicon-link"></span>
+                                                <span class="hidden-xs hidden-sm"></span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </uib-tab>
